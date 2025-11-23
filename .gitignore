@@ -1,0 +1,28 @@
+# Node
+node_modules
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+
+# Environment / secrets
+.env
+.env.*
+server/.env
+server/.env.local
+
+# Builds and caches
+coverage
+.dist
+build
+.tmp
+.idea
+.DS_Store
+.expo
+web/.cache
+.vercel
+
+# Logs
+*.log
+
+# TypeScript
+*.tsbuildinfo
