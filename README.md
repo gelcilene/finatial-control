@@ -7,6 +7,7 @@ Aplicação proposta para controle de contabilidade com versões web e mobile. O
 - `mobile/`: aplicativo React Native (Expo) com estado persistido em `AsyncStorage` e componentes prontos para uso em Android/iOS/web.
 - `server/`: API Express + Postgres para contas, comprovantes e verificação de senha.
 - `docker-compose.yml`: orquestra Postgres + API para uso local ou deploy containerizado.
+- `.gitignore`: ignora caches, ambientes locais e artefatos temporários nas pastas web/mobile/server.
 
 ## Como executar (API + banco)
 1. Copie o arquivo de variáveis de ambiente: `cp server/.env.example server/.env` (ajuste `DATABASE_URL`/origens conforme necessário).
@@ -32,6 +33,10 @@ Aplicação proposta para controle de contabilidade com versões web e mobile. O
 - Programação mensal de avisos com simulação de envio para WhatsApp, Telegram e e-mail.
 - Controle de pagamento exigindo comprovante (upload no web, URI no mobile) e senha correta para marcar como pago.
 - Histórico de faturas e auditoria de ações (logs) persistidos no Postgres para a web e armazenamento local no mobile.
+
+## Testes automatizados
+- A API possui testes de integração em `server/test/server.test.js`, usando `pg-mem` para simular um banco Postgres em memória e `supertest` para exercitar os endpoints.
+- Para rodar, instale as dependências em `server/` e execute `npm test` (requer Node 18+). Nenhum serviço externo é necessário.
 
 ## Observações
 - Integrações reais com WhatsApp, Telegram e e-mail devem ser conectadas a webhooks ou serviços externos; no exemplo são simuladas.
