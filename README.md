@@ -38,6 +38,10 @@ Aplicação proposta para controle de contabilidade com versões web e mobile. O
 - A API possui testes de integração em `server/test/server.test.js`, usando `pg-mem` para simular um banco Postgres em memória e `supertest` para exercitar os endpoints.
 - Para rodar, instale as dependências em `server/` e execute `npm test` (requer Node 18+). Nenhum serviço externo é necessário.
 
+### Corrigindo erro 403 ao instalar dependências
+- Se o ambiente aplica proxies por padrão (gerando `E403` ao baixar pacotes), use o script preparado para limpar variáveis de proxy e fixar o registry oficial: `npm run deps` dentro de `server/`.
+- Alternativamente, execute manualmente com as variáveis limpas: `HTTP_PROXY= HTTPS_PROXY= http_proxy= https_proxy= npm_config_proxy= npm_config_http_proxy= npm_config_https_proxy= npm install --no-progress --registry=https://registry.npmjs.org`.
+
 ## Observações
 - Integrações reais com WhatsApp, Telegram e e-mail devem ser conectadas a webhooks ou serviços externos; no exemplo são simuladas.
 - Para produção, armazene senhas de forma segura (hash) e use backend para envios e armazenamento de comprovantes (já previsto na API Express). Para Vercel ou outra cloud, adapte as variáveis de ambiente e o container Postgres conforme o provedor.
