@@ -21,7 +21,7 @@ Aplicação proposta para controle de contabilidade com versões web e mobile. O
 
 ## Como executar (web)
 1. Certifique-se de que a API está rodando (ex.: `http://localhost:4000`).
-2. Abra `web/index.html` em um navegador moderno (pode ser servido por um server estático ou diretamente via arquivo). Para apontar para outra URL de API, defina `window.BACKEND_URL` antes de carregar `app.js`.
+2. Abra `web/index.html` em um navegador moderno (pode ser servido por um server estático ou diretamente via arquivo). Ao hospedar web e API no mesmo domínio, a aplicação usa `/api` automaticamente; para apontar para outra URL de API, defina `window.BACKEND_URL` antes de carregar `app.js`.
 3. Cadastre contas, configure o dia de lembrete e informe contatos de WhatsApp, Telegram e e-mail. Os pagamentos requerem a senha cadastrada e envio de comprovante (base64) para persistir no banco.
 
 ## Como executar (mobile)
@@ -41,6 +41,12 @@ Aplicação proposta para controle de contabilidade com versões web e mobile. O
 ### Corrigindo erro 403 ao instalar dependências
 - Se o ambiente aplica proxies por padrão (gerando `E403` ao baixar pacotes), use o script preparado para limpar variáveis de proxy e fixar o registry oficial: `npm run deps` dentro de `server/`.
 - Alternativamente, execute manualmente com as variáveis limpas: `HTTP_PROXY= HTTPS_PROXY= http_proxy= https_proxy= npm_config_proxy= npm_config_http_proxy= npm_config_https_proxy= npm install --no-progress --registry=https://registry.npmjs.org`.
+
+## Deploy na Vercel
+- O projeto possui `vercel.json` que publica a API Express como função serverless em `/api` (via `api/index.js`) e serve o front-end estático a partir de `web/`.
+- Antes do deploy, configure no painel da Vercel as variáveis de ambiente `DATABASE_URL` (Postgres acessível pela Vercel) e, opcionalmente, `ALLOWED_ORIGINS`.
+- Rode `npm install` na raiz (usa workspaces para `server/`) e execute `vercel --prod` ou conecte o repositório ao GitHub para builds automáticos.
+- Para ambientes locais com Vercel CLI, o comando `npm run vercel-build` é um no-op (frontend não requer build); a API cria/valida o schema na primeira invocação.
 
 ## Observações
 - Integrações reais com WhatsApp, Telegram e e-mail devem ser conectadas a webhooks ou serviços externos; no exemplo são simuladas.

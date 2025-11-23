@@ -1,0 +1,9 @@
+{
+  "name": "finatial-control",
+  "private": true,
+  "type": "module",
+  "workspaces": ["server", "mobile"],
+  "scripts": {
+    "vercel-build": "echo 'Aplicação web estática; nenhuma etapa de build necessária.'"
+  }
+}

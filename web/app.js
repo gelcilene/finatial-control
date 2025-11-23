@@ -1,4 +1,8 @@
-const API_BASE = window.BACKEND_URL || "http://localhost:4000";
+const API_BASE =
+  window.BACKEND_URL ||
+  (window.location.origin.startsWith("file")
+    ? "http://localhost:4000"
+    : `${window.location.origin}/api`);
 
 const state = {
   bills: [],

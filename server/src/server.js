@@ -15,8 +15,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 
 export function createPoolFromEnv() {
   if (!DATABASE_URL) {
-    console.error("DATABASE_URL não configurada.");
-    process.exit(1);
+    throw new Error("DATABASE_URL não configurada.");
   }
   return new Pool({ connectionString: DATABASE_URL });
 }
